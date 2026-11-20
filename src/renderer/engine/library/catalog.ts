@@ -25,12 +25,17 @@ export const LIBRARY_CATEGORIES: LibraryCategory[] = [
   { id: 'graphics', label: 'Éléments graphiques', labelEn: 'Graphics', icon: 'PenTool', kinds: ['graphic'] },
 ];
 
-const T = (partial: Omit<LibraryResource, 'tags'> & { tags?: string[] }): LibraryResource => ({
-  tags: [],
+const T = (
+  partial: Omit<LibraryResource, 'tags' | 'license' | 'premium'> & {
+    tags?: string[];
+    license?: LibraryResource['license'];
+    premium?: boolean;
+  }
+): LibraryResource => ({
   premium: false,
   license: 'free',
   ...partial,
-  tags: partial.tags || [],
+  tags: partial.tags ?? [],
 });
 
 export const DEFAULT_RESOURCES: LibraryResource[] = [

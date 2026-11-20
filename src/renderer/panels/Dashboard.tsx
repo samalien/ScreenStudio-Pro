@@ -24,7 +24,7 @@ export function Dashboard() {
   const loadRecent = async () => {
     try {
       const list = await listRecentProjects(12);
-      setRecent(list || []);
+      setRecent((list as RecentItem[]) || []);
     } catch {
       setRecent([]);
     }

@@ -144,8 +144,5 @@ const api = {
 
 contextBridge.exposeInMainWorld('electronAPI', api);
 
-declare global {
-  interface Window {
-    electronAPI: typeof api;
-  }
-}
+/** Runtime shape of window.electronAPI (renderer types live in vite-env.d.ts). */
+export type ElectronAPI = typeof api;

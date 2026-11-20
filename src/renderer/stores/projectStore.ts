@@ -11,13 +11,14 @@ import {
   type Track,
   type Keyframe,
   type ProjectSnapshot,
+  type TransitionType,
   defaultEffects,
   defaultAudioSettings,
   DEFAULT_TRACKS,
 } from '../engine/types';
 import { historyEngine, type SnapshotData } from '../engine/history';
 
-export type { Clip, ClipEffects, Track, Keyframe, ProjectSnapshot };
+export type { Clip, ClipEffects, Track, Keyframe, ProjectSnapshot, TransitionType };
 export { defaultEffects };
 
 function cloneClips(clips: Clip[]): Clip[] {

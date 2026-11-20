@@ -162,11 +162,11 @@ export const useLibraryStore = create<LibraryState>((set, get) => ({
   addCustomResource: (res) => {
     const id = res.id || `custom-${uuidv4().slice(0, 8)}`;
     const item: LibraryResource = {
-      premium: false,
-      license: 'free',
-      tags: [],
       ...res,
       id,
+      premium: res.premium ?? false,
+      license: res.license ?? 'free',
+      tags: res.tags ?? [],
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };

@@ -108,7 +108,7 @@ export const useAIStore = create<AIState>((set, get) => ({
 
   runJob: async (input, providerId = 'auto') => {
     const capability = input.capability;
-    let resolved =
+    const resolved =
       providerId === 'auto'
         ? get().resolveProvider(capability)
         : (() => {

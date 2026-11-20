@@ -4,6 +4,7 @@
 
 export function sanitizeFileName(name: string): string {
   return name
+  // eslint-disable-next-line no-control-regex -- intentional strip of control characters
     .replace(/[<>:"/\\|?*\x00-\x1F]/g, '_')
     .replace(/\s+/g, ' ')
     .trim()

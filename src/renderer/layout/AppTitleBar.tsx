@@ -36,7 +36,7 @@ export function AppTitleBar() {
       const saved = await saveProject(doc, path);
       setProjectMeta(projectName, saved);
       setUnsaved(false);
-      notify({ type: 'success', title: 'Projet enregistré', message: saved });
+      notify({ type: 'success', title: 'Projet enregistré', message: String(saved) });
     } catch (err: any) {
       notify({ type: 'error', title: 'Erreur de sauvegarde', message: String(err?.message || err) });
     } finally {
@@ -87,7 +87,7 @@ export function AppTitleBar() {
     setProfileOpen(true);
     try {
       const lic = await getLicense();
-      setLicense(lic);
+      setLicense({ plan: lic.plan || 'free', features: lic.features || [] });
     } catch {
       setLicense({ plan: 'free', features: [] });
     }

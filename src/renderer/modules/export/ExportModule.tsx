@@ -151,7 +151,7 @@ export function ExportModule() {
         settings.container === 'webp'
       ) {
         const fmt =
-          settings.container === 'jpg' || settings.container === 'jpeg'
+          settings.container === 'jpg'
             ? 'jpeg'
             : settings.container === 'webp'
               ? 'webp'
@@ -209,7 +209,7 @@ export function ExportModule() {
       });
 
       // If user asked mp4/mov and we only have webm, still deliver with note
-      let finalBlob = blob;
+      const finalBlob = blob;
       let finalName = name;
       if (
         (settings.container === 'mp4' || settings.container === 'mov') &&

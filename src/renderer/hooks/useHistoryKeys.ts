@@ -7,7 +7,10 @@ export function useHistoryKeys() {
   const undo = useProjectStore((s) => s.undo);
   const redo = useProjectStore((s) => s.redo);
 
-  useEffect(() => historyEngine.subscribe(() => force((n) => n + 1)), []);
+  useEffect(() => {
+    const unsubscribe = historyEngine.subscribe(() => force((n) => n + 1));
+    return unsubscribe;
+  }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

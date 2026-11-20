@@ -23,9 +23,11 @@ export class HistoryEngine {
   private listeners = new Set<Listener>();
   private isApplying = false;
 
-  subscribe(fn: Listener) {
+  subscribe(fn: Listener): () => void {
     this.listeners.add(fn);
-    return () => this.listeners.delete(fn);
+    return () => {
+      this.listeners.delete(fn);
+    };
   }
 
   private emit() {

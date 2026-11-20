@@ -113,7 +113,7 @@ export function AIPanel() {
     }
 
     if (r.type === 'audio' && r.url) {
-      let duration = r.duration || 5;
+      const duration = r.duration || 5;
       try {
         const peaks = await computeWaveform(r.url, 64);
         addClip({

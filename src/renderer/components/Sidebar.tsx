@@ -7,7 +7,7 @@ import {
   Download,
   Settings,
 } from 'lucide-react';
-import type { ModuleId } from '../App';
+export type ModuleId = 'capture' | 'editor' | 'effects' | 'audio' | 'export' | 'settings';
 import clsx from 'clsx';
 
 interface SidebarProps {

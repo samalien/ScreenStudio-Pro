@@ -118,6 +118,8 @@ export class InMemoryJobQueue implements JobQueue {
     if (this.running) return;
     this.running = true;
     try {
+      // Event-loop style worker: exit when queue is empty
+      // eslint-disable-next-line no-constant-condition -- pump until no queued jobs
       while (true) {
         const next = Array.from(this.jobs.values())
           .filter((j) => j.status === 'queued')
@@ -139,7 +141,10 @@ export class InMemoryJobQueue implements JobQueue {
 
         try {
           const result = await processor(next, (p) => this.emitProgress(next.id, p));
-          if (next.status === 'cancelled') continue;
+          // Re-read from map: cancel() may have mutated status during await
+          // (TS narrows next.status to 'running' after assignment above).
+          const latest = this.jobs.get(next.id);
+          if (latest?.status === 'cancelled') continue;
           this.emitComplete(next.id, result);
           log.info('Job finished', { id: next.id, success: result.success });
         } catch (err: any) {

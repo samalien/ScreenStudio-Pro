@@ -3,7 +3,7 @@
 **Logiciel professionnel de capture d'écran et de montage vidéo**  
 Inspiré de CapCut, Camtasia, OBS Studio et ScreenPal.
 
-Version actuelle : **0.6.0** — Architecture technique préparée pour une plateforme pro.
+Version actuelle : **0.8.5** — Architecture technique préparée pour une plateforme pro.
 
 > Voir aussi : [ARCHITECTURE.md](./ARCHITECTURE.md) pour le détail des services, IPC, FFmpeg, jobs, stockage et sécurité.
 
@@ -19,7 +19,7 @@ Version actuelle : **0.6.0** — Architecture technique préparée pour une plat
 
 ---
 
-## Architecture (v0.6)
+## Architecture (v0.8.5)
 
 ```
 src/
@@ -134,3 +134,20 @@ MIT — Libre d’utilisation, modification et commercialisation.
 
 **ScreenStudio Pro** — Créez des tutoriels et démonstrations de qualité professionnelle.
 # ScreenStudio-Pro
+
+
+---
+
+## Scripts utiles (v0.8.5)
+
+```bash
+npm install          # dépendances
+npm run dev          # main watch + Vite + Electron
+npm run typecheck    # main + renderer
+npm run build        # dist/main + dist/renderer
+npm run lint         # ESLint (nécessite les plugins listés en dev)
+npm run ci           # typecheck + build
+npm run package      # electron-builder → release/
+```
+
+> CI GitHub Actions : `.github/workflows/ci.yml` (install, typecheck, build).
